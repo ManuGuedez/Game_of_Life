@@ -1,4 +1,5 @@
 ﻿using System;
+using Library;
 
 namespace PII_Game_Of_Life
 {
@@ -6,7 +7,10 @@ namespace PII_Game_Of_Life
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            bool[,] booleanBoard = Import.ImportFile("../../assets/board.txt");
+            bool[,] gameBoard = GameLogic.Game(booleanBoard);
+
+            Printer.PrintBoard(gameBoard);
         }
     }
 }
