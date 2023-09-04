@@ -4,6 +4,10 @@ using System.Threading;
 
 namespace Library
 {
+    /*
+    Esta calse posee una única responsabilidad de hacer, se encarga de imprimir en la 
+    consola el tablero a medida que se van cumpliendo las diferentes formas lógicas del juego.
+    */
     public class Printer
     {
         public static void PrintBoard(bool[,] board)

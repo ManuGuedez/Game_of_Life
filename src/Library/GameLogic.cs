@@ -2,15 +2,17 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 namespace Library
 {
+    /*
+    Esa clase se encarga únicamente hacer un tablero que siga la lógica del juego.
+    Luego de proporcionado un tablero con valores booleanos, el método Game dvuelve un nuevo tablero
+    basado en el anterior, en el cual hace cumplir la lógica del juego. 
+    */
     public class GameLogic
     {
         public static bool[,] Game(bool[,] booleanBoard)
         {
-            // Cargo la variable gameBoard con los datos obtenidos una vez creada la matriz booleana con Import
             bool[,] gameBoard = booleanBoard;
-            // Devuelve la el número de elementos (logitud) de la primer dimensión del tablero -número de columnas-
             int boardWidth = gameBoard.GetLength(0);
-            // Devuelve la altura del tablero (cantidad de elementos de la segunda dimensión del tablero) -filas de la matriz-
             int boardHeight = gameBoard.GetLength(1);
 
             bool[,] cloneBoard = new bool[boardWidth, boardHeight];
@@ -31,34 +33,25 @@ namespace Library
                         }
                     }
 
-                    // Pregunto si en esta posición hay una célula viva
                     if(gameBoard[x,y])
                     {
                         aliveNeighbors--;
                     }
 
-                    // Pregunto si la célula de la posición esta viva y si tiene menos de dos vecinos
                     if (gameBoard[x,y] && aliveNeighbors < 2)
                     {
-                        // Célula muere por baja población
                         cloneBoard[x,y] = false;
                     }
-                    // Si no, pregunto si la célula está viva y si además tiene más de 3 vecinos
                     else if (gameBoard[x,y] && aliveNeighbors > 3)
                     {
-                        // Célula muere por sobrepoblación
                         cloneBoard[x,y] = false;
                     }
-
-                    // Si no, pregunto si la célula esta muerta pero tiene 3 vecinos
                     else if (!gameBoard[x,y] && aliveNeighbors == 3)
                     {
-                        // Célula nace por reproducción
                         cloneBoard[x,y] = true;
                     }
                     else
                     {
-                        // Célula mantiene el estado que tenía
                         cloneBoard[x,y] = gameBoard[x,y];
                     }
                 }
